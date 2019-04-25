@@ -6,6 +6,12 @@
 
 #include "ReShade.fxh"
 
+//Return the average value of a float3's components
+float Avg(float3 value)
+{
+    return((value.x + value.y + value.z) / 3);
+}
+
 //Convert a greyscale value to a hue.
 //Forumula has been heavily modified to fit MWO's greyscale spectrum
 //Original formula at https://stackoverflow.com/a/19873710
@@ -28,7 +34,7 @@ float4 GreyscaleToRainbow(float4 vpos : SV_Position, float2 texcoord : TEXCOORD)
         (colorInput.r == colorInput.b))
     {
         //convert the rgb color from a greyscale value to a hue
-        colorInput.rgb = ValueToHue((r + g + b) / 3);
+        colorInput.rgb = ValueToHue(Avg(colorInput));
     }
 
 	return colorInput;  //Return the modified or unmodified color
