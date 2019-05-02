@@ -26,6 +26,14 @@ float3 ValueToHue(float value)
     float r = value * 6 - 2;              //Red for lighttones
     float g = 1.5 - abs(value * 6 - 2.5); //Green for midtones
     float b = 1 - abs(value * 6 - 1);     //Blue for darktones
+    if(value > 0.8) 
+    {
+        b = value * 6 - 4.8;
+    }
+    else
+    {
+        b = 1 - abs(value * 6 - 1);
+    }
     return saturate(float3(r, g, b));     //Limit RGB to 0-1 and return as a float3 color
 }
 
