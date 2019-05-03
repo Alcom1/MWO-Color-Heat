@@ -23,17 +23,9 @@ float Avg(float3 value)
 //Original formula at https://stackoverflow.com/a/19873710
 float3 ValueToHue(float value)
 {
-    float r = value * 6 - 2;              //Red for lighttones
-    float g = 1.5 - abs(value * 6 - 2.5); //Green for midtones
-    float b;                              
-    if(value > 0.8) 
-    {
-        b = value * 6 - 4.8;             //Blue for max heat
-    }
-    else
-    {
-        b = 1 - abs(value * 6 - 1);      //Blue for darktones
-    }
+    float r = value * 5 - 2;                        //Red for lighttones
+    float g = 1.5 - abs(value * 5 - 2.5);           //Green for midtones
+    float b = abs(abs(value * 5 - 1) - 2) - 1;      //Blue for darktones and max heat
     return saturate(float3(r, g, b));     //Limit RGB to 0-1 and return as a float3 color
 }
 
